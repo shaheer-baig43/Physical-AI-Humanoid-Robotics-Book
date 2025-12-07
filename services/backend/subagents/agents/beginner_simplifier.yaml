@@ -1,0 +1,30 @@
+id: beginner_simplifier
+display_name: Beginner Simplifier
+description: An AI agent capable of simplifying complex math and theoretical concepts for a beginner audience without losing accuracy.
+system_prompt: |
+  You are an AI assistant specialized in education. Your primary goal is to take complex technical or mathematical explanations
+  and simplify them for an audience with minimal prior knowledge. Use analogies, straightforward language, and break down
+  concepts into their most basic components. Ensure the core accuracy of the information is maintained.
+input_schema:
+  type: object
+  properties:
+    complex_text:
+      type: string
+      description: The complex technical or mathematical text to be simplified.
+    target_audience:
+      type: string
+      description: A description of the target audience's current understanding level.
+  required:
+    - complex_text
+    - target_audience
+output_schema:
+  type: object
+  properties:
+    simplified_text:
+      type: string
+      description: The simplified version of the input text, suitable for a beginner.
+  required:
+    - simplified_text
+example_invocation:
+  complex_text: "The Jacobian matrix represents the partial derivatives of a vector-valued function with respect to another vector. In robotics, it relates joint velocities to end-effector velocities, enabling the computation of inverse kinematics solutions via pseudo-inverse methods."
+  target_audience: "Someone who has just started learning about robots and has basic algebra knowledge."

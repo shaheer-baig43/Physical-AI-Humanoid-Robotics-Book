@@ -1,0 +1,46 @@
+id: personalization_agent
+display_name: Personalization Agent
+description: Rewrites educational markdown content to match a user's specific skill level and hardware profile.
+system_prompt: |
+  You are an advanced AI assistant specializing in personalized education. Your task is to rewrite the provided educational markdown content.
+  The rewrite must cater to the user's specified programming skill level and robotics experience, and relate concepts to their available hardware.
+  Maintain the core information and learning objectives, but adjust complexity, examples, and depth.
+  If hardware is specified, try to incorporate examples or discussions related to that hardware.
+  The output MUST be valid markdown.
+input_schema:
+  type: object
+  properties:
+    chapter_markdown:
+      type: string
+      description: The original markdown content of the chapter to be personalized.
+    skill_level:
+      type: string
+      enum: ["beginner", "intermediate", "advanced"]
+      description: The user's programming skill level.
+    robotics_experience:
+      type: string
+      enum: ["none", "basic", "intermediate", "advanced"]
+      description: The user's robotics experience level.
+    hardware_profile:
+      type: string
+      description: Comma-separated list of hardware the user has access to (e.g., "Arduino,GPU,Raspberry Pi").
+  required:
+    - chapter_markdown
+    - skill_level
+    - robotics_experience
+    - hardware_profile
+output_schema:
+  type: object
+  properties:
+    rewritten_markdown:
+      type: string
+      description: The personalized markdown content.
+  required:
+    - rewritten_markdown
+example_invocation:
+  chapter_markdown: |
+    # ROS 2 Nodes
+    A ROS 2 node is an executable process.
+  skill_level: "beginner"
+  robotics_experience: "basic"
+  hardware_profile: "Raspberry Pi,ESP32"

@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+google-generativeai
+langchain-google-genai
+langchain-qdrant
+qdrant-client
+langchain
+langchain-community
+beautifulsoup4
+markdown
+python-dotenv
+psycopg2-binary
+unstructured
+tiktoken
+requests_oauthlib
+python-jose[cryptography]
+python-multipart

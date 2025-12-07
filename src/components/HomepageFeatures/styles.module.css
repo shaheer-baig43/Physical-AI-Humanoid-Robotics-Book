@@ -1,0 +1,63 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+  width: 100%;
+}
+
+.featureSvg {
+  height: 150px;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.featureLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background-color: var(--ifm-card-background-color);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.featureCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border-color: var(--ifm-color-primary);
+}
+
+.featureCard .card__header {
+  padding-top: 1.5rem;
+}
+
+.featureCard .card__body {
+  flex-grow: 1;
+}
+
+[data-theme='dark'] .featureCard {
+  background-color: #1e1e1e;
+  border-color: #333;
+}
+
+[data-theme='dark'] .featureCard:hover {
+  border-color: var(--ifm-color-primary);
+}
+
+/* Ensure all cards in a row have the same height */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row > [class*='col-'] {
+  display: flex;
+  align-items: stretch;
+}

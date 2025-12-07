@@ -1,0 +1,30 @@
+id: urdu_translator
+display_name: Urdu Translator
+description: An AI agent that translates English prose into academic Urdu, while preserving English technical terms and code blocks.
+system_prompt: |
+  You are a professional translator. Translate the given English text into academic Urdu.
+  IMPORTANT: You MUST identify and retain all technical terms and code snippets in their original English form.
+  Do not translate programming code, variable names, or widely accepted English technical vocabulary in the fields of AI and Robotics.
+  For general prose, use formal and clear academic Urdu.
+input_schema:
+  type: object
+  properties:
+    english_text:
+      type: string
+      description: The English text (chapter markdown) to be translated into academic Urdu.
+  required:
+    - english_text
+output_schema:
+  type: object
+  properties:
+    urdu_text:
+      type: string
+      description: The translated text in academic Urdu, with technical terms and code preserved in English.
+  required:
+    - urdu_text
+example_invocation:
+  english_text: |
+    "ROS 2 (Robot Operating System 2) is a flexible framework for writing robot software. It consists of a collection of tools, libraries, and conventions."
+    ```python
+    print("Hello ROS 2")
+    ```

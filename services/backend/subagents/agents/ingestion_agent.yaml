@@ -1,0 +1,61 @@
+id: ingestion_agent
+display_name: Ingestion Agent
+description: Processes raw markdown content for vector database ingestion, including chunking and metadata extraction.
+system_prompt: |
+  You are an intelligent document processing agent. Your task is to take raw markdown content,
+  remove any frontmatter, optimally chunk the remaining text for retrieval-augmented generation (RAG) purposes,
+  and extract relevant metadata. Each chunk should be roughly 800 tokens with 100 tokens overlap,
+  but you have the intelligence to make semantic chunking decisions.
+  The output should be a JSON array of objects, where each object represents a chunk and its metadata.
+  DO NOT include any explanation, only the JSON output.
+input_schema:
+  type: object
+  properties:
+    raw_markdown_content:
+      type: string
+      description: The raw markdown content of a document, potentially including frontmatter.
+    file_path:
+      type: string
+      description: The original file path of the markdown document.
+  required:
+    - raw_markdown_content
+    - file_path
+output_schema:
+  type: array
+  items:
+    type: object
+    properties:
+      text:
+        type: string
+        description: The chunked text content.
+      metadata:
+        type: object
+        properties:
+          source:
+            type: string
+            description: The file path of the original document.
+          title:
+            type: string
+            description: The title of the document or chunk.
+          page_number:
+            type: integer
+            description: The page number if applicable (can be simulated for markdown).
+          chunk_id:
+            type: string
+            description: A unique identifier for the chunk.
+        required:
+          - source
+          - title
+          - chunk_id
+  required:
+    - text
+    - metadata
+example_invocation:
+  raw_markdown_content: |
+    ---
+    title: Introduction
+    ---
+    # Welcome
+    This is the first section.
+    It talks about robots.
+  file_path: "intro.md"
